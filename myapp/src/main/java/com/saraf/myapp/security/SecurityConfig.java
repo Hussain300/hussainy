@@ -40,14 +40,4 @@ public class SecurityConfig {
          return http.build();
     }
 
-//    @Bean
-//    public UserDetailsService users(){
-//        UserDetails user = User.builder()
-//                .username("user")
-//                .password(passwordEncoder.encode("user-pass"))
-//                .roles("USER")
-//                .build();
-//
-//        return new InMemoryUserDetailsManager(user);
-//    }
 }

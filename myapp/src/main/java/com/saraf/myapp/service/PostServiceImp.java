@@ -1,6 +1,5 @@
 package com.saraf.myapp.service;
 
-import com.auth0.jwt.JWT;
 import com.saraf.myapp.entity.Post;
 import com.saraf.myapp.entity.User;
 import com.saraf.myapp.exception.EntityNotFoundException;
@@ -9,9 +8,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,9 +39,30 @@ public class PostServiceImp implements PostService {
         return unwrapPost(post, id);
     }
 
+
+
     @Override
     public List<Post> getPosts() {
+
         return ( List<Post>) postRepository.findAll() ;
+    }
+
+    @Override
+    public void updatePost(long id, Post post) {
+        Post post1 = postRepository.findById(id).get();
+        post1 = post;
+        postRepository.save(post1);
+
+    }
+
+    @Override
+    public void deletePost(long id) {
+        postRepository.deleteById(id);
+    }
+
+    @Override
+    public void deleteAllPosts() {
+        postRepository.deleteAll();
     }
 
     public static Post unwrapPost(Optional <Post> entity, long id){
